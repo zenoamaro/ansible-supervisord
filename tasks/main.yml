@@ -1,0 +1,8 @@
+---
+
+# Delegate further configuration to subtasks
+# placed in this same directory.
+
+- include: prerequisites.yml
+- include: install.yml
+- include: configure.yml

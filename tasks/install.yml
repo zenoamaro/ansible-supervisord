@@ -1,0 +1,19 @@
+---
+
+# Targeting specific OSes or distributions:
+#
+#   - `ansible_system`               → Linux, BSD, ...
+#   - `ansible_os_family`            → Debian, RedHat, ...
+#   - `ansible_distribution`         → Debian, Ubuntu, RedHat, ...
+#   - `ansible_distribution_release` → precise, wheezy, ...
+#   - `ansible_pkg_mgr`              → apt, yum, ...
+
+- name: Install Supervisord
+  sudo: yes
+  pip:
+    name: supervisor
+    state: present
+  tags:
+    - deps
+    - supervisor
+    - supervisord

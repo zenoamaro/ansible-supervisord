@@ -1,0 +1,6 @@
+---
+
+# List the names of roles on which this role depends.
+# They will be executed first, with their defaults mixed in.
+# http://www.ansibleworks.com/docs/playbooks_roles.html#role-dependencies
+dependencies: []

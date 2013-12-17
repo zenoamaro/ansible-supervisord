@@ -1,0 +1,45 @@
+---
+
+# REVIEW: it is kind of a chore to have to install `setuptools`
+#         just to get `easy_install` and use it to fetch the latest
+#         `pip` (which is way newer than the distro `python-pip`).
+#
+#         Could we default on the distro pip? Does that conflict
+#         with an easy_installed pip later on? Could we just assume
+#         that pip is installed and carry on?
+
+- name: Prerequisites for provisioning
+  sudo: yes
+  apt:
+    name: "{{item}}"
+  with_items:
+    - build-essential
+    - libcurl4-openssl-dev
+    - python-setuptools
+    - python-dev
+  tags:
+    - supervisor
+    - python
+    - dev
+    - deps
+    - supervisord
+
+- name: Prerequisites for provisioning
+  sudo: yes
+  easy_install:
+    name: pip
+  tags:
+    - supervisor
+    - python
+    - deps
+    - supervisord
+
+- name: Prerequisites for provisioning
+  sudo: yes
+  pip:
+    name: pycurl
+  tags:
+    - supervisor
+    - python
+    - deps
+    - supervisord

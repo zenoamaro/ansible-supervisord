@@ -1,0 +1,25 @@
+---
+
+# Quick-provisioning playbook
+# ---------------------------
+
+# A Simple, straight playbook for quick remote installations.
+# You will be asked which hosts to provision before-hand.
+
+
+- name: 'Supervisor'
+
+  vars_prompt:
+    selected_hosts: Specify the hosts to provision
+
+  hosts: "{{selected_hosts}}"
+
+  pre_tasks:
+    # Better safe than sorry
+    - name: APT update
+      sudo: yes
+      apt: update_cache=yes
+
+  roles:
+    - '.'    # The current directory itself is the role
+
