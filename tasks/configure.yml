@@ -34,6 +34,18 @@
     - supervisor
     - supervisord
 
+- name: Link Supervisord conf
+  sudo: yes
+  file:
+    src: "{{supervisord_conf_file}}"
+    dest: "{{supervisord_conf_file_link}}"
+    state: link
+  notify: restart supervisord
+  tags:
+    - conf
+    - supervisor
+    - supervisord
+
 - name: Create supervisord init script
   sudo: yes
   template:

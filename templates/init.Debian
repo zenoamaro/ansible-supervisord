@@ -25,7 +25,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON={{supervisord_daemon}}
 NAME={{supervisord_service_name}}
-DESC=Supervisor daemon `{{supervisord_identifier}}`
+DESC='Supervisor'
 
 test -x $DAEMON || exit 0
 

@@ -16,6 +16,7 @@ supervisord_conf_dir:    /etc/supervisor
 supervisord_runtime_dir: /var/run
 
 supervisord_conf_file: "{{supervisord_conf_dir}}/supervisord.conf"
+supervisord_conf_file_link: "/etc/supervisord.conf"  # FIXME: This is too hardcoded
 supervisord_additional_conf_dir: "{{supervisord_conf_dir}}/conf.d"
 
 supervisord_init_script: "/etc/init.d/{{supervisord_service_name}}"
