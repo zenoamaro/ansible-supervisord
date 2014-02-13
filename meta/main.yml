@@ -1,6 +1,17 @@
 ---
 
-# List the names of roles on which this role depends.
-# They will be executed first, with their defaults mixed in.
-# http://www.ansibleworks.com/docs/playbooks_roles.html#role-dependencies
+galaxy_info:
+  author: zenoamaro
+  description: A role to install and configure Supervisord
+  license: MIT
+  min_ansible_version: 1.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - precise
+
+  categories:
+    - monitoring
+
 dependencies: []
