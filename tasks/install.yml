@@ -10,7 +10,8 @@
 
 - name: Install Supervisord
   sudo: yes
-  pip:
+  when: ansible_os_family == 'Debian'
+  apt:
     name: supervisor
     state: present
   tags:
