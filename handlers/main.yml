@@ -4,6 +4,10 @@
   sudo: yes
   service: name=supervisor state=restarted
 
+- name: reread supervisord
+  sudo: yes
+  supervisorctl: reread
+
 - name: update supervisord
   sudo: yes
   supervisorctl: update
