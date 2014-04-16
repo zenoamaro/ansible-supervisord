@@ -22,7 +22,7 @@ Supported targets:
 
 Installation methods:
 
-- Official python package at [PyPI](https://pypi.python.org/pypi/supervisor)
+- Binary packages from the system repos.
 
 
 Usage
