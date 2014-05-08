@@ -6,8 +6,8 @@
 
 - name: reread supervisord
   sudo: yes
-  supervisorctl: reread
+  command: supervisorctl reread
 
 - name: update supervisord
   sudo: yes
-  supervisorctl: update
+  command: supervisorctl update
