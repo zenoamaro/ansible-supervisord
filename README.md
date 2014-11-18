@@ -59,7 +59,7 @@ Still to do
 Changelog
 ---------
 
-#### next
+### 0.3.0
 - Revised the INIT script's restart sequence.
 - Added a test box for Ubuntu Trusty 14.04.
 - Sleep time between daemon restarts is now configurable.
