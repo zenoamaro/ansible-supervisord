@@ -39,7 +39,7 @@ PIDFILE={{supervisord_pid_file}}
 # If this value is set too low you might not
 # let some servers to die gracefully and
 # 'restart' will not work
-DODTIME=5
+DODTIME={{supervisord_restart_delay_time}}
 
 # Include supervisor defaults if available
 if [ -f /etc/default/{{supervisord_service_name}} ] ; then

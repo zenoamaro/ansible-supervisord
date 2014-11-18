@@ -62,6 +62,7 @@ Changelog
 #### next
 - Revised the INIT script's restart sequence.
 - Added a test box for Ubuntu Trusty 14.04.
+- Sleep time between daemon restarts is now configurable.
 
 ### 0.2.0
 - Delegated installation of supervisord to the OS package manager.

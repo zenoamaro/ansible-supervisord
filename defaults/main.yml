@@ -23,6 +23,9 @@ supervisord_init_script: "/etc/init.d/{{supervisord_service_name}}"
 supervisord_daemon: "{{supervisord_bin_dir}}/supervisord"
 supervisord_supervisorctl: "{{supervisord_bin_dir}}/supervisorctl"
 
+# Sleep time between restarts to catch slowpoke processes.
+supervisord_restart_delay_time: 5
+
 # If true, supervisord will start daemonized.
 supervisord_daemonize: yes
 
