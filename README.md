@@ -62,10 +62,12 @@ Still to do
 Changelog
 ---------
 
-### 0.1.0
-
-Initial version.
+#### next
+- Revised the INIT script's restart sequence.
 
 ### 0.2.0
-
 - Delegated installation of supervisord to the OS package manager.
+
+### 0.1.0
+Initial version.
+

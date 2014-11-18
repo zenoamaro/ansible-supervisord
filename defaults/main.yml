@@ -21,6 +21,7 @@ supervisord_additional_conf_dir: "{{supervisord_conf_dir}}/conf.d"
 
 supervisord_init_script: "/etc/init.d/{{supervisord_service_name}}"
 supervisord_daemon: "{{supervisord_bin_dir}}/supervisord"
+supervisord_supervisorctl: "{{supervisord_bin_dir}}/supervisorctl"
 
 # If true, supervisord will start daemonized.
 supervisord_daemonize: yes
