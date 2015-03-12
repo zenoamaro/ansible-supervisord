@@ -1,8 +1,8 @@
 [test-ubuntu-precise]
-192.168.33.20
+192.168.33.20 ansible_ssh_private_key_file=.vagrant/machines/test-ubuntu-precise/virtualbox/private_key
 
 [test-ubuntu-trusty]
-192.168.33.21
+192.168.33.21 ansible_ssh_private_key_file=.vagrant/machines/test-ubuntu-trusty/virtualbox/private_key
 
 [test:children]
 test-ubuntu-precise
@@ -13,4 +13,3 @@ test
 
 [vagrant:vars]
 ansible_ssh_user=vagrant
-ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
