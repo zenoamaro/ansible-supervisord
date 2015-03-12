@@ -12,7 +12,7 @@
 # or comprehensive configuration possible for your role.
 
 
-- name: 'Supervisor role integration tests'
+- name: 'Role integration tests'
 
   hosts: test
 
