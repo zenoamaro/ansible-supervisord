@@ -20,7 +20,7 @@ Vagrant.configure '2' do |config|
 		ansible.inventory_path = './inventory'
 	end
 
-	config.vm.define 'test-ubuntu-trusty' do |box|
+	config.vm.define 'test-ubuntu-trusty', autostart:false do |box|
 		box.vm.box = "ubuntu/trusty64"
 		config.vm.network :private_network, ip: "192.168.33.21"
 		config.vm.provision :ansible do |ansible|
@@ -29,7 +29,7 @@ Vagrant.configure '2' do |config|
 		end
 	end
 
-	config.vm.define 'test-ubuntu-precise' do |box|
+	config.vm.define 'test-ubuntu-precise', autostart:false do |box|
 		box.vm.box = "ubuntu/precise64"
 		config.vm.network :private_network, ip: "192.168.33.20"
 		config.vm.provision :ansible do |ansible|
