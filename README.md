@@ -59,6 +59,11 @@ Still to do
 Changelog
 ---------
 
+### 0.3.1
+- Fixed missing newlines for some configuration variables.
+- Added warning for auto-generated files.
+- Updated provisioning to use the new Vagrant private keys.
+
 ### 0.3.0
 - Revised the INIT script's restart sequence.
 - Added a test box for Ubuntu Trusty 14.04.
