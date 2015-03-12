@@ -1,5 +1,9 @@
 #! /bin/sh
 #
+# WARNING: This file is auto-generated from the provisioning
+#          scripts. Do not edit by hand because your changes
+#          will likely be overwritten.
+#
 # skeleton  example file to build /etc/init.d/ scripts.
 #           This file should be used to construct scripts for /etc/init.d.
 #
