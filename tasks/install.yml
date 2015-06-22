@@ -10,7 +10,7 @@
 
 - name: Update the packages list
   sudo: yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and supervisord_install_method == 'package'
   apt:
     update_cache: yes
     cache_valid_time: 3600
@@ -19,12 +19,22 @@
     - supervisor
     - supervisord
 
-- name: Install Supervisord
+- name: Install Supervisord using apt
   sudo: yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and supervisord_install_method == 'package'
   apt:
     name: supervisor
     state: present
+  tags:
+    - deps
+    - supervisor
+    - supervisord
+
+- name: Install Supervisord using pip
+  sudo: yes
+  when: supervisord_install_method == 'pip'
+  pip:
+    name: supervisor
   tags:
     - deps
     - supervisor

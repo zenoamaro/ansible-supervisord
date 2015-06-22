@@ -19,8 +19,8 @@ Supported targets:
 - RedHat (untested)
 
 Installation methods:
-- Binary packages from the system repos.
-
+- Binary packages from the system repos (default).
+- Python packages from [the pypi repos](https://pypi.python.org/pypi/supervisor) using pip (`supervisord_install_method: pip`).
 
 Usage
 -----

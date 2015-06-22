@@ -48,6 +48,7 @@
 
 - name: Create supervisord init script
   sudo: yes
+  when: supervisord_service_enabled
   template:
     src: "{{item}}"
     dest: "{{supervisord_init_script}}"
@@ -68,6 +69,7 @@
 
 - name: Add supervisord to init
   sudo: yes
+  when: supervisord_service_enabled
   service:
     name: "{{supervisord_service_name}}"
     enabled: yes

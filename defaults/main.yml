@@ -56,6 +56,8 @@ supervisord_user:
 # configuration file was found.
 supervisord_pwd:
 
+# Whether to use supervisord service. 
+supervisord_service_enabled: yes
 
 # Unix socket server
 # ------------------
@@ -211,3 +213,10 @@ supervisord_min_procs: 200
 # correctly matched. Recursive includes from included files are not supported.
 supervisord_additional_conf_files:
   - "{{supervisord_additional_conf_dir}}/*.conf"
+
+
+# Install
+# -------
+
+# Method to use to install supervisor. It can be either "package" or "pip".
+supervisord_install_method: package

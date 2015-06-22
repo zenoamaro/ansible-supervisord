@@ -3,11 +3,14 @@
 - name: restart supervisord
   sudo: yes
   service: name=supervisor state=restarted
+  when: supervisord_service_enabled
 
 - name: reread supervisord
   sudo: yes
   command: supervisorctl reread
+  when: supervisord_service_enabled
 
 - name: update supervisord
   sudo: yes
   command: supervisorctl update
+  when: supervisord_service_enabled
