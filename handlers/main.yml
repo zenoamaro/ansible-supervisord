@@ -1,8 +1,20 @@
 ---
 
+- name: stop supervisord
+  sudo: yes
+  service: name=supervisor state=stopped
+
+- name: start supervisord
+  sudo: yes
+  service: name=supervisor state=started
+
 - name: restart supervisord
   sudo: yes
   service: name=supervisor state=restarted
+
+- name: reload supervisord
+  sudo: yes
+  service: name=supervisor state=reloaded
 
 - name: reread supervisord
   sudo: yes
