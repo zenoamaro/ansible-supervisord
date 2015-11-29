@@ -29,3 +29,12 @@
     - deps
     - supervisor
     - supervisord
+
+- name: Install superlance
+  sudo: yes
+  pip: "name=superlance executable={{ supervisord_superlance_pip }}"
+  when: supervisord_superlance
+  tags:
+    - supervisor
+    - supervisord
+    - superlance
