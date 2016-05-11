@@ -1,5 +1,7 @@
 ---
 
+supervisor_version: present
+
 # See the documentation for help in configuring Supervisor.
 # [docs] http://supervisord.org/configuration.html
 
