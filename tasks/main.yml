@@ -7,7 +7,7 @@
 - include: configure.yml
 
 - name: Ensure supervisord is running
-  sudo: yes
+  become: yes
   service:
     name: "{{supervisord_service_name}}"
     state: running
