@@ -15,6 +15,16 @@
     name: "{{supervisord_service_name}}"
     state: running
     enabled: yes
+  when: ansible_service_mgr != "/sbin/launchd"
+  tags:
+    - init
+    - supervisor
+    - supervisord
+
+- name: Ensure supervisord is running
+  become: yes
+  command: launchctl load -w {{ supervisord_init_script }}
+  when: ansible_service_mgr == "/sbin/launchd"
   tags:
     - init
     - supervisor

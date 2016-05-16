@@ -3,3 +3,10 @@ supervisor_dependencies:
   - pip
 
 pip_executable: "/usr/local/bin/pip"
+
+supervisord_conf_dir:     /usr/local/etc/supervisor
+supervisord_runtime_dir:  /usr/local/var/run
+supervisord_logs_dir:     /usr/local/var/log/supervisor
+
+supervisord_service_name: "com.agendaless.supervisord"
+supervisord_init_script:  "/Library/LaunchDaemons/{{supervisord_service_name}}.plist"

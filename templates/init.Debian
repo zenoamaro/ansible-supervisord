@@ -51,7 +51,7 @@ if [ -f /etc/default/{{supervisord_service_name}} ] ; then
 fi
 
 # Load these global settings
-DAEMON_OPTS="-c /etc/supervisor/supervisord.conf $DAEMON_OPTS"
+DAEMON_OPTS="-c {{supervisord_conf_file}} $DAEMON_OPTS"
 
 set -e
 

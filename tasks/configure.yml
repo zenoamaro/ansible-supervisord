@@ -7,6 +7,7 @@
 #   - `ansible_distribution`         → Debian, Ubuntu, RedHat, ...
 #   - `ansible_distribution_release` → precise, wheezy, ...
 #   - `ansible_pkg_mgr`              → apt, yum, ...
+#   - `ansible_service_mgr`          → upstart, systemd, /sbin/launchd, ...
 
 - name: Create Supervisor conf and log directories
   become: yes
@@ -17,6 +18,7 @@
     - "{{supervisord_conf_dir}}"
     - "{{supervisord_additional_conf_dir}}"
     - "{{supervisord_logs_dir}}"
+    - "{{supervisord_runtime_dir}}"
   notify: restart supervisord
   tags:
     - conf
@@ -71,6 +73,7 @@
   service:
     name: "{{supervisord_service_name}}"
     enabled: yes
+  when: ansible_service_mgr != "/sbin/launchd"
   tags:
     - init
     - conf
