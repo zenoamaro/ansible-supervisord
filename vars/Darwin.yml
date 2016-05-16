@@ -1,0 +1,5 @@
+---
+supervisor_dependencies:
+  - pip
+
+pip_executable: "/usr/local/bin/pip"

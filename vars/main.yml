@@ -1,5 +1,2 @@
 # vars file for supervisor
 ---
-supervisor_dependencies:
-  - python
-  - python-pip

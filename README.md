@@ -13,6 +13,8 @@ Supported Supervisor versions:
 - Supervisor 3+
 
 Supported targets:
+- OS X 10.11 "El Capitan"
+- Ubuntu 16.04 LTS "Xenial Xerus"
 - Ubuntu 14.04 LTS "Trusty Tahr"
 - Ubuntu 12.04 LTS "Precise Pangolin"
 - Debian (untested)

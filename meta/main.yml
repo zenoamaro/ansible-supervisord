@@ -13,6 +13,8 @@ galaxy_info:
       versions:
         - precise
         - trusty
+        - xenial
+    - name: GenericUNIX
 
   categories:
     - monitoring

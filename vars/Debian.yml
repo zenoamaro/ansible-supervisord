@@ -1,0 +1,6 @@
+---
+supervisor_dependencies:
+  - python
+  - python-pip
+
+pip_executable: "/usr/bin/pip"
