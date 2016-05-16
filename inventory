@@ -5,7 +5,7 @@
 192.168.33.21 ansible_ssh_private_key_file=.vagrant/machines/test-ubuntu-trusty/virtualbox/private_key
 
 [test-ubuntu-xenial]
-127.0.0.1:22221 ansible_ssh_private_key_file=.vagrant/machines/test-ubuntu-xenial/virtualbox/private_key
+127.0.0.1:22221 ansible_ssh_private_key_file=.vagrant/machines/test-ubuntu-xenial/virtualbox/private_key ansible_user=ubuntu
 # 192.168.33.22
 # due to issue https://github.com/mitchellh/vagrant/issues/6871
 # in vagrant 1.8.1 we'll use loopback interface and static port for ssh
