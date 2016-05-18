@@ -38,7 +38,7 @@
   become: yes
   pip:
     name: supervisor
-    version: "{{ supervisor_version }}"
+    version: "{{ supervisor_version|default(omit) }}"
     executable: "{{ pip_executable }}"
   when: "supervisor_version != 'latest' and supervisor_version != 'present'"
   tags:
@@ -51,7 +51,7 @@
   pip:
     name: supervisor
     state: "{{ supervisor_version }}"
-    executable: "{{ pip_executable }}"
+    executable: "{{ pip_executable|default(omit) }}"
   when: "supervisor_version == 'latest' or supervisor_version == 'present'"
   tags:
     - deps
