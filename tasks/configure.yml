@@ -9,16 +9,28 @@
 #   - `ansible_pkg_mgr`              → apt, yum, ...
 #   - `ansible_service_mgr`          → upstart, systemd, /sbin/launchd, ...
 
-- name: Create Supervisor conf and log directories
+- name: Stat Supervisor directories
   become: yes
-  file:
-    dest: "{{item}}"
-    state: directory
+  stat:
+    path: "{{ item }}/"
+  register: stat_directories
   with_items:
     - "{{supervisord_conf_dir}}"
     - "{{supervisord_additional_conf_dir}}"
     - "{{supervisord_logs_dir}}"
     - "{{supervisord_runtime_dir}}"
+  tags:
+    - conf
+    - supervisor
+    - supervisord
+
+- name: Create Supervisor directories
+  become: yes
+  file:
+    path: "{{ item.item }}"
+    state: directory
+  with_items: "{{ stat_directories.results }}"
+  when: item.stat.exists == false
   notify: restart supervisord
   tags:
     - conf
