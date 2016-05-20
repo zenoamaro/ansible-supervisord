@@ -18,6 +18,11 @@
 
   vars:
     # custom_configuration: value
+    supervisor_programs:
+      - name: ping
+        command: ping -i 10 localhost
+        autostart: true
+        autorestart: true
 
   roles:
     - '.'    # The current directory itself is the role

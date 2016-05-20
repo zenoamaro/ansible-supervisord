@@ -12,8 +12,8 @@
 
 - name: reread supervisord
   become: yes
-  command: supervisorctl reread
+  command: "{{ supervisord_supervisorctl }} reread"
 
 - name: update supervisord
   become: yes
-  command: supervisorctl update
+  command: "{{ supervisord_supervisorctl }} update"

@@ -1,6 +1,9 @@
 ---
 
 supervisor_version: present
+supervisor_programs: []
+supervisor_groups: []
+supervisor_events: []
 
 # See the documentation for help in configuring Supervisor.
 # [docs] http://supervisord.org/configuration.html

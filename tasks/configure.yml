@@ -88,6 +88,27 @@
     - supervisor
     - supervisord
 
+- name: Update program/group/event configuration files
+  become: yes
+  vars:
+    section_label: "{{ item.label }}"
+    subsections: "{{ item.subsections }}"
+  template:
+    src: program_group_event.conf
+    dest: "{{ supervisord_additional_conf_dir }}/{{ item.label }}s.conf"
+    mode: 0640
+  with_items:
+    - { label: 'program', subsections: "{{ supervisor_programs }}" }
+    - { label: 'group', subsections: "{{ supervisor_groups }}" }
+    - { label: 'eventlistener', subsections: "{{ supervisor_events }}" }
+  notify:
+    - update supervisord
+  tags:
+    - init
+    - conf
+    - supervisor
+    - supervisord
+
 - name: Add supervisord to init
   become: yes
   service:
