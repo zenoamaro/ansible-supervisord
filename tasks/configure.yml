@@ -31,7 +31,9 @@
     state: directory
   with_items: "{{ stat_directories.results }}"
   when: item.stat.exists == false
-  notify: restart supervisord
+  notify:
+    - restart supervisord
+    - launchd | restart supervisord
   tags:
     - conf
     - supervisor
@@ -42,7 +44,9 @@
   template:
     src: supervisord.conf
     dest: "{{supervisord_conf_file}}"
-  notify: restart supervisord
+  notify:
+    - restart supervisord
+    - launchd | restart supervisord
   tags:
     - conf
     - supervisor
@@ -54,7 +58,9 @@
     src: "{{supervisord_conf_file}}"
     dest: "{{supervisord_conf_file_link}}"
     state: link
-  notify: restart supervisord
+  notify:
+    - restart supervisord
+    - launchd | restart supervisord
   tags:
     - conf
     - supervisor
@@ -73,7 +79,9 @@
         - "init.{{ansible_os_family}}"
       paths:
         - ../templates/
-  notify: restart supervisord
+  notify:
+    - restart supervisord
+    - launchd | restart supervisord
   tags:
     - init
     - conf

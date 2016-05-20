@@ -3,12 +3,12 @@
 - name: restart supervisord
   become: yes
   service: name=supervisor state=restarted
-  when: ansible_service_mgr != "/sbin/launchd"
+  when: ansible_service_mgr != '/sbin/launchd'
 
-- name: restart supervisord
+- name: launchd | restart supervisord
   become: yes
-  command: launchctl unload -w {{ supervisord_init_script }}; launchctl load -w {{ supervisord_init_script }}
-  when: ansible_service_mgr == "/sbin/launchd"
+  shell: launchctl unload -w {{ supervisord_init_script }}; launchctl load -w {{ supervisord_init_script }}
+  when: ansible_service_mgr == '/sbin/launchd'
 
 - name: reread supervisord
   become: yes
