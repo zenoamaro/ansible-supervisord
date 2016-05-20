@@ -35,7 +35,20 @@ And add it to your play's roles:
     - hosts: ...
       roles:
         - supervisord
-        - ...
+
+      vars:
+        supervisor_tasks:
+          - name: ping
+            command: ping -i 10 localhost
+            autostart: true
+            autorestart: true
+        supervisor_events:
+          - name: crashmail
+            command: crashmail -p program -m alerts@localhost
+            events: PROCESS_STATE_EXITED
+        supervisor_groups:
+          - name: my_group
+            programs: ping
 
 This roles comes preloaded with almost every available default. You can override each one in your hosts/group vars, in your inventory, or in your play. See the annotated defaults in `defaults/main.yml` for help in configuration. All provided variables start with `supervisord_` or `supervisorctl_`.
 

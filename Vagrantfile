@@ -41,7 +41,6 @@ Vagrant.configure '2' do |config|
     config.vm.provision :ansible do |ansible|
       apply_test_ansible_defaults ansible
       ansible.extra_vars = {}
-      ansible.verbose = 'v'
     end
   end
 
