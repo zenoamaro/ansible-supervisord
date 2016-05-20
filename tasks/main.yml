@@ -12,7 +12,7 @@
 - name: Ensure supervisord is running
   become: yes
   service:
-    name: "{{supervisord_service_name}}"
+    name: "{{ supervisord_service_name }}"
     state: running
     enabled: yes
   when: ansible_service_mgr != "/sbin/launchd"
@@ -21,11 +21,25 @@
     - supervisor
     - supervisord
 
-- name: Ensure supervisord is running
-  become: yes
-  command: launchctl load -w {{ supervisord_init_script }}
+- block:
+  - name: check supervisor status
+    become: yes
+    shell: "launchctl list | grep {{ supervisord_service_name }}"
+    register: supervisord_status
+    ignore_errors: true
+    changed_when: false
+    tags:
+      - init
+      - supervisor
+      - supervisord
+
+  - name: Ensure supervisord is running
+    debug: msg="Supervosor PID={{ supervisord_status.stdout.split('\t')[0] }}, so it's not running, let's restart"
+    notify: launchd | restart supervisord
+    when: supervisord_status.rc != 0 or supervisord_status.stdout.split('\t')[0] == '-'
+    changed_when: supervisord_status.rc != 0 or supervisord_status.stdout.split('\t')[0] == '-'
+    tags:
+      - init
+      - supervisor
+      - supervisord
   when: ansible_service_mgr == "/sbin/launchd"
-  tags:
-    - init
-    - supervisor
-    - supervisord
