@@ -15,10 +15,10 @@
     path: "{{ item }}/"
   register: stat_directories
   with_items:
-    - "{{supervisord_conf_dir}}"
-    - "{{supervisord_additional_conf_dir}}"
-    - "{{supervisord_logs_dir}}"
-    - "{{supervisord_runtime_dir}}"
+    - "{{ supervisord_conf_dir }}"
+    - "{{ supervisord_additional_conf_dir }}"
+    - "{{ supervisord_logs_dir }}"
+    - "{{ supervisord_runtime_dir }}"
   tags:
     - conf
     - supervisor
@@ -43,7 +43,7 @@
   become: yes
   template:
     src: supervisord.conf
-    dest: "{{supervisord_conf_file}}"
+    dest: "{{ supervisord_conf_file }}"
   notify:
     - restart supervisord
     - launchd | restart supervisord
@@ -55,8 +55,8 @@
 - name: Link Supervisord conf
   become: yes
   file:
-    src: "{{supervisord_conf_file}}"
-    dest: "{{supervisord_conf_file_link}}"
+    src: "{{ supervisord_conf_file }}"
+    dest: "{{ supervisord_conf_file_link }}"
     state: link
   notify:
     - restart supervisord
@@ -69,14 +69,14 @@
 - name: Create supervisord init script
   become: yes
   template:
-    src: "{{item}}"
-    dest: "{{supervisord_init_script}}"
+    src: "{{ item }}"
+    dest: "{{ supervisord_init_script }}"
     mode: 0755
   with_first_found:
     - files:
-        - "init.{{ansible_distribution}}-{{ansible_distribution_release}}"
-        - "init.{{ansible_distribution}}"
-        - "init.{{ansible_os_family}}"
+        - "init.{{ ansible_distribution }}-{{ ansible_distribution_release }}"
+        - "init.{{ ansible_distribution }}"
+        - "init.{{ ansible_os_family }}"
       paths:
         - ../templates/
   notify:
@@ -91,7 +91,7 @@
 - name: Add supervisord to init
   become: yes
   service:
-    name: "{{supervisord_service_name}}"
+    name: "{{ supervisord_service_name }}"
     enabled: yes
   when: ansible_service_mgr != "/sbin/launchd"
   tags:

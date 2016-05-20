@@ -27,29 +27,29 @@
 . /lib/lsb/init-functions
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON={{supervisord_daemon}}
-SUPERVISORCTL={{supervisord_supervisorctl}}
-NAME={{supervisord_service_name}}
+DAEMON={{ supervisord_daemon }}
+SUPERVISORCTL={{ supervisord_supervisorctl }}
+NAME={{ supervisord_service_name }}
 DESC=Supervisor
 
 test -x $DAEMON || exit 0
 
-LOGDIR={{supervisord_logs_dir}}
-PIDFILE={{supervisord_pid_file}}
+LOGDIR={{ supervisord_logs_dir }}
+PIDFILE={{ supervisord_pid_file }}
 
 # Time to wait for the server to die, in seconds
 # If this value is set too low you might not
 # let some servers to die gracefully and
 # 'restart' will not work
-DODTIME={{supervisord_restart_delay_time}}
+DODTIME={{ supervisord_restart_delay_time }}
 
 # Include supervisor defaults if available
-if [ -f /etc/default/{{supervisord_service_name}} ] ; then
-    . /etc/default/{{supervisord_service_name}}
+if [ -f /etc/default/{{ supervisord_service_name }} ] ; then
+    . /etc/default/{{ supervisord_service_name }}
 fi
 
 # Load these global settings
-DAEMON_OPTS="-c {{supervisord_conf_file}} $DAEMON_OPTS"
+DAEMON_OPTS="-c {{ supervisord_conf_file }} $DAEMON_OPTS"
 
 set -e
 

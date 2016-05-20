@@ -14,7 +14,7 @@
       prompt: "Specify the hosts to provision"
       default: "all"
 
-  hosts: "{{selected_hosts}}"
+  hosts: "{{ selected_hosts }}"
 
   roles:
     - '.'    # The current directory itself is the role

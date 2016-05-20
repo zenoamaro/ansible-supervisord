@@ -10,20 +10,20 @@
       <false/>
     </dict>
     <key>Label</key>
-    <string>{{supervisord_service_name}}</string>
+    <string>{{ supervisord_service_name }}</string>
     <key>ProgramArguments</key>
     <array>
-      <string>{{supervisord_daemon}}</string>
+      <string>{{ supervisord_daemon }}</string>
       <string>-n</string>
       <string>-c</string>
-      <string>{{supervisord_conf_file}}</string>
+      <string>{{ supervisord_conf_file }}</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardErrorPath</key>
-    <string>{{supervisord_logs_dir}}/supervisord.err</string>
+    <string>{{ supervisord_logs_dir }}/supervisord.err</string>
     <key>StandardOutPath</key>
-    <string>{{supervisord_logs_dir}}/supervisord.out</string>
+    <string>{{ supervisord_logs_dir }}/supervisord.out</string>
     <key>UserName</key>
     <string>root</string>
     <key>GroupName</key>
