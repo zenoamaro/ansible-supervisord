@@ -1,5 +1,10 @@
 ---
 
+supervisor_version: present
+supervisor_programs: []
+supervisor_groups: []
+supervisor_events: []
+
 # See the documentation for help in configuring Supervisor.
 # [docs] http://supervisord.org/configuration.html
 
@@ -9,19 +14,19 @@
 
 # The identifier string for this supervisor process, used by the RPC interface.
 supervisord_identifier: supervisor
-supervisord_service_name: "{{supervisord_identifier}}"
+supervisord_service_name: "{{ supervisord_identifier }}"
 
-supervisord_bin_dir:     /usr/bin
+supervisord_bin_dir:     /usr/local/bin
 supervisord_conf_dir:    /etc/supervisor
 supervisord_runtime_dir: /var/run
 
-supervisord_conf_file: "{{supervisord_conf_dir}}/supervisord.conf"
+supervisord_conf_file: "{{ supervisord_conf_dir }}/supervisord.conf"
 supervisord_conf_file_link: "/etc/supervisord.conf"  # FIXME: This is too hardcoded
-supervisord_additional_conf_dir: "{{supervisord_conf_dir}}/conf.d"
+supervisord_additional_conf_dir: "{{ supervisord_conf_dir }}/conf.d"
 
-supervisord_init_script: "/etc/init.d/{{supervisord_service_name}}"
-supervisord_daemon: "{{supervisord_bin_dir}}/supervisord"
-supervisord_supervisorctl: "{{supervisord_bin_dir}}/supervisorctl"
+supervisord_init_script: "/etc/init.d/{{ supervisord_service_name }}"
+supervisord_daemon: "{{ supervisord_bin_dir }}/supervisord"
+supervisord_supervisorctl: "{{ supervisord_bin_dir }}/supervisorctl"
 
 # Sleep time between restarts to catch slowpoke processes.
 supervisord_restart_delay_time: 5
@@ -32,7 +37,7 @@ supervisord_daemonize: yes
 # The location in which supervisord keeps its pid file. This option can include
 # the value %(here)s, which expands to the directory in which the supervisord
 # configuration file was found, or shell `$variables`.
-supervisord_pid_file: "{{supervisord_runtime_dir}}/supervisord.pid"
+supervisord_pid_file: "{{ supervisord_runtime_dir }}/supervisord.pid"
 
 # The umask of the supervisord process.
 supervisord_umask: '022'
@@ -67,7 +72,7 @@ supervisord_socket_server: on
 # to communicate with supervisord over this port. This option can include the
 # value `%(here)s`, which expands to the directory in which the supervisord
 # configuration file was found, or shell `$variables`.
-supervisord_socket_file:  "{{supervisord_runtime_dir}}/supervisor.sock"
+supervisord_socket_file:  "{{ supervisord_runtime_dir }}/supervisor.sock"
 
 supervisord_socket_chmod: '0700'
 supervisord_socket_chown: # Defaults to the `user:group` who started it
@@ -116,7 +121,7 @@ supervisord_rpc_interfaces: {}
 # The URL that should be used to access the supervisord server, e.g.
 # http://localhost:9001. For UNIX domain sockets, use
 # unix:///absolute/path/to/file.sock.
-supervisorctl_server_url: "unix://{{supervisord_socket_file}}"
+supervisorctl_server_url: "unix://{{ supervisord_socket_file }}"
 
 # Specifies the authentication details required to connect to the server. The
 # password should be the cleartext version of password from the supervisord
@@ -127,7 +132,7 @@ supervisorctl_username:
 supervisorctl_password:
 
 # String used as supervisorctl prompt.
-supervisorctl_prompt: "{{supervisord_identifier}}"
+supervisorctl_prompt: "{{ supervisord_identifier }}"
 
 # A path to use as the readline persistent history file. If you enable this
 # feature by choosing a path, your supervisorctl commands will be kept in the
@@ -144,7 +149,7 @@ supervisord_logs_dir: /var/log/supervisor
 # The path to the activity log of the supervisord process. This option can
 # include the value %(here)s, which expands to the directory in which the
 # supervisord configuration file was found.
-supervisord_log_file: "{{supervisord_logs_dir}}/supervisord.log"
+supervisord_log_file: "{{ supervisord_logs_dir }}/supervisord.log"
 
 # The logging level, dictating what is written to the supervisord activity log.
 # One of critical, error, warn, info, debug, trace, or blather. Note that at log
@@ -166,7 +171,7 @@ supervisord_log_file_backups: 5
 # The directory used for AUTO child log files. This option can include the value
 # %(here)s, which expands to the directory in which the supervisord
 # configuration file was found.
-supervisord_child_logs_dir: "{{supervisord_logs_dir}}"
+supervisord_child_logs_dir: "{{ supervisord_logs_dir }}"
 
 # Strip all ANSI escape sequences from child log files.
 supervisord_strip_ansi_from_child_logs: no
@@ -210,4 +215,4 @@ supervisord_min_procs: 200
 # expansion is done, but *, ?, and character ranges expressed with [] will be
 # correctly matched. Recursive includes from included files are not supported.
 supervisord_additional_conf_files:
-  - "{{supervisord_additional_conf_dir}}/*.conf"
+  - "{{ supervisord_additional_conf_dir }}/*.conf"

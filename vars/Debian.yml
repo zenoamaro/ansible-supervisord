@@ -1,0 +1,4 @@
+---
+supervisor_dependencies:
+  - python
+  - python-pip

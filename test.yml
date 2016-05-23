@@ -18,6 +18,18 @@
 
   vars:
     # custom_configuration: value
+    supervisor_programs:
+      - name: ping
+        command: ping -i 10 localhost
+        autostart: true
+        autorestart: true
+    supervisor_events:
+      - name: crashmail
+        command: crashmail -p program -m alerts@localhost
+        events: PROCESS_STATE_EXITED
+    supervisor_groups:
+      - name: my_group
+        programs: ping
 
   roles:
     - '.'    # The current directory itself is the role

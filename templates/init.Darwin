@@ -1,0 +1,32 @@
+{{ ansible_managed | comment('xml') }}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+    </dict>
+    <key>Label</key>
+    <string>{{ supervisord_service_name }}</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>{{ supervisord_daemon }}</string>
+      <string>-n</string>
+      <string>-c</string>
+      <string>{{ supervisord_conf_file }}</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>{{ supervisord_logs_dir }}/supervisord.err</string>
+    <key>StandardOutPath</key>
+    <string>{{ supervisord_logs_dir }}/supervisord.out</string>
+    <key>UserName</key>
+    <string>root</string>
+    <key>GroupName</key>
+    <string>admin</string>
+  </dict>
+</plist>

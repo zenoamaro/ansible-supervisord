@@ -8,23 +8,51 @@
 #   - `ansible_distribution_release` → precise, wheezy, ...
 #   - `ansible_pkg_mgr`              → apt, yum, ...
 
-- name: Update the packages list
-  sudo: yes
-  when: ansible_os_family == 'Debian'
+- name: Debian | Install Supervisord dependencies
+  become: yes
   apt:
+    name: "{{ item }}"
+    state: present
     update_cache: yes
-    cache_valid_time: 3600
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  with_items: "{{ supervisor_dependencies }}"
+  when: ansible_os_family == 'Debian'
   tags:
     - deps
     - supervisor
     - supervisord
 
-- name: Install Supervisord
-  sudo: yes
-  when: ansible_os_family == 'Debian'
-  apt:
-    name: supervisor
+- name: Darwin | Install Supervisord dependencies
+  become: yes
+  easy_install:
+    name: "{{ item }}"
     state: present
+  with_items: "{{ supervisor_dependencies }}"
+  when: ansible_os_family == 'Darwin'
+  tags:
+    - deps
+    - supervisor
+    - supervisord
+
+- name: Install Supervisord (specific version)
+  become: yes
+  pip:
+    name: supervisor
+    version: "{{ supervisor_version|default(omit) }}"
+    executable: "{{ pip_executable }}"
+  when: "supervisor_version != 'latest' and supervisor_version != 'present'"
+  tags:
+    - deps
+    - supervisor
+    - supervisord
+
+- name: Install Supervisord (latest version or just present)
+  become: yes
+  pip:
+    name: supervisor
+    state: "{{ supervisor_version }}"
+    executable: "{{ pip_executable|default(omit) }}"
+  when: "supervisor_version == 'latest' or supervisor_version == 'present'"
   tags:
     - deps
     - supervisor

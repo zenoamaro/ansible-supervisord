@@ -1,13 +1,19 @@
 ---
 
 - name: restart supervisord
-  sudo: yes
+  become: yes
   service: name=supervisor state=restarted
+  when: ansible_service_mgr != '/sbin/launchd'
+
+- name: launchd | restart supervisord
+  become: yes
+  shell: launchctl unload -w {{ supervisord_init_script }}; launchctl load -w {{ supervisord_init_script }}
+  when: ansible_service_mgr == '/sbin/launchd'
 
 - name: reread supervisord
-  sudo: yes
-  command: supervisorctl reread
+  become: yes
+  command: "{{ supervisord_supervisorctl }} reread"
 
 - name: update supervisord
-  sudo: yes
-  command: supervisorctl update
+  become: yes
+  command: "{{ supervisord_supervisorctl }} update"
