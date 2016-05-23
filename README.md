@@ -37,7 +37,7 @@ And add it to your play's roles:
         - supervisord
 
       vars:
-        supervisor_tasks:
+        supervisor_programs:
           - name: ping
             command: ping -i 10 localhost
             autostart: true
