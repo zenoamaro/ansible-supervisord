@@ -46,6 +46,18 @@
     - supervisor
     - supervisord
 
+- name: Configure supervisord tasks in conf.d
+  action:
+    module: template
+    src: "task.conf.j2"
+    dest: "{{ supervisord_additional_conf_dir }}/{{ item.name }}.conf"
+  with_items: "{{ supervisord_tasks }}"
+  notify: restart supervisord
+  tags:
+    - tasks
+    - supervisor
+    - supervisord
+
 - name: Create supervisord init script
   sudo: yes
   template:

@@ -66,15 +66,18 @@ supervisord_inet_password: "magicpassword"
 
 supervisord_tasks:
   - name: ping
+    type: program
     command: ping google.com
     autostart: false
     autorestart: false
     startretries: 3
-
-supervisord_events:
   - name: crashmail
+    type: eventlistener
     command: crashmail -a -m "example-email@gmail.com" -o "[Supervisord crashmail]"
     events: PROCESS_STATE_EXITED
+  - name: test_group
+    type: group
+    programs: google
 ```
 
 

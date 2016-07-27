@@ -212,26 +212,21 @@ supervisord_min_procs: 200
 supervisord_additional_conf_files:
   - "{{supervisord_additional_conf_dir}}/*.conf"
 
-# List of supervisor programs, examples:
-#    supervisor_tasks:
+# List of supervisor programs, events or groups:
+#    supervisord_tasks:
 #        - name: google
+#          type: program
 #          command: ping google.com
 #          autostart: true
 #          autorestart: false
-supervisord_tasks: []
-
-# List of supervisor event - similar to tasks/programs but for eventlisteners like crashmail, examples:
-#    supervisor_events:
 #        - name: crashmail
+#          type: crashmail
 #          command: crashmail -p program -m alerts@example.com
 #          events: PROCESS_STATE_EXITED
-supervisord_events: []
-
-# List of groups tasks, examples:
-#   supervisor_groups:
 #        - name: test_group
+#          type: group
 #          programs: google
-supervisord_groups: []
+supervisord_tasks: []
 
 # Install superlance (http://superlance.readthedocs.org)
 supervisord_superlance: no
