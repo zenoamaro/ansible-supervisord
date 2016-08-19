@@ -52,7 +52,7 @@
     src: "task.conf.j2"
     dest: "{{ supervisord_additional_conf_dir }}/{{ item.name }}.conf"
   with_items: "{{ supervisord_tasks }}"
-  notify: restart supervisord
+  notify: update supervisord
   tags:
     - tasks
     - supervisor
