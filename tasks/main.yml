@@ -16,3 +16,13 @@
     - init
     - supervisor
     - supervisord
+
+- name: Force systemctl enable supervisor ( Bug in ubuntu 16.04 pkg )
+  become: yes
+  command: systemctl enable supervisor
+  when: ansible_os_family == 'Debian'
+  tags:
+    - init
+    - supervisor
+    - supervisord
+
