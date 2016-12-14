@@ -9,7 +9,7 @@
 #   - `ansible_pkg_mgr`              → apt, yum, ...
 
 - name: Update the packages list
-  sudo: yes
+  become: yes
   when: ansible_os_family == 'Debian'
   apt:
     update_cache: yes
@@ -20,7 +20,7 @@
     - supervisord
 
 - name: Install Supervisord
-  sudo: yes
+  become: yes
   when: ansible_os_family == 'Debian'
   apt:
     name: supervisor
@@ -31,7 +31,7 @@
     - supervisord
 
 - name: Install superlance
-  sudo: yes
+  become: yes
   pip: "name=superlance executable={{ supervisord_superlance_pip }}"
   when: supervisord_superlance
   tags:
