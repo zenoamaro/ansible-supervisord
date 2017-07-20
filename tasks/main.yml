@@ -10,7 +10,7 @@
   sudo: yes
   service:
     name: "{{supervisord_service_name}}"
-    state: running
+    state: started
     enabled: yes
   tags:
     - init
