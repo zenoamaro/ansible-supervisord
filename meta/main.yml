@@ -3,18 +3,20 @@
 galaxy_info:
   author: zenoamaro
   description: A role to install and configure Supervisord
-  version: 0.3.2
+  version: 0.6.4
   license: MIT
-  min_ansible_version: 1.4
-
+  min_ansible_version: 2.4
   platforms:
-    - name: Debian
-    - name: Ubuntu
-      versions:
-        - precise
-        - trusty
-
+  - name: Ubuntu
+    versions:
+      - all
+  - name: Debian
+    versions:
+      - all
   categories:
+    - system
     - monitoring
+    - supervisor
+    - supervisord
 
 dependencies: []

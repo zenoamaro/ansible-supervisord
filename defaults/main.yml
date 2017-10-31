@@ -85,23 +85,23 @@ supervisord_socket_password:
 # HTTP server
 # -----------
 
-supervisord_inet_server: off
+supervisord_inet_http_server: off
 
 # Host:port values or (e.g. 127.0.0.1 and 9001) on which supervisor will listen
 # for HTTP/XML-RPC requests. Supervisorctl will use XML-RPC to communicate with
 # supervisord over this port. To listen on all interfaces in the machine,
 # specify an empty address or use '*'.
-supervisord_inet_address: 127.0.0.1
-supervisord_inet_port: 9001
+supervisord_inet_http_address: 127.0.0.1
+supervisord_inet_http_port: 9001
 
 # Specifies the authentication details required to connect to this server. The
 # password can be cleartext, or can be specified as a SHA-1 hash if prefixed by
 # the string {SHA}. For example, {SHA}82ab876d1387bfafe46cc1c8a2ef074eae50cb1d
 # is the SHA-stored version of the password “thepassword”. Note that hashed
 # password must be in hex format.
-supervisord_inet_authenticated: no
-supervisord_inet_username:
-supervisord_inet_password:
+supervisord_inet_http_authenticated: no
+supervisord_inet_http_username:
+supervisord_inet_http_password:
 
 
 # Interfaces
@@ -211,3 +211,24 @@ supervisord_min_procs: 200
 # correctly matched. Recursive includes from included files are not supported.
 supervisord_additional_conf_files:
   - "{{supervisord_additional_conf_dir}}/*.conf"
+
+# List of supervisor programs, events or groups:
+#    supervisord_tasks:
+#        - name: google
+#          type: program
+#          command: ping google.com
+#          autostart: true
+#          autorestart: false
+#        - name: crashmail
+#          type: crashmail
+#          command: crashmail -p program -m alerts@example.com
+#          events: PROCESS_STATE_EXITED
+#        - name: test_group
+#          type: group
+#          programs: google
+supervisord_tasks: []
+
+# Install superlance (http://superlance.readthedocs.org)
+supervisord_superlance: no
+
+supervisord_superlance_pip: /usr/local/bin/pip2

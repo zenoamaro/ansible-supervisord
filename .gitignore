@@ -9,3 +9,4 @@
 *.orig
 *.retry
 .DS_Store
+.idea

@@ -9,7 +9,7 @@
 #   - `ansible_pkg_mgr`              → apt, yum, ...
 
 - name: Create Supervisor conf and log directories
-  sudo: yes
+  become: yes
   file:
     dest: "{{item}}"
     state: directory
@@ -24,7 +24,7 @@
     - supervisord
 
 - name: Configure Supervisord
-  sudo: yes
+  become: yes
   template:
     src: supervisord.conf
     dest: "{{supervisord_conf_file}}"
@@ -35,7 +35,7 @@
     - supervisord
 
 - name: Link Supervisord conf
-  sudo: yes
+  become: yes
   file:
     src: "{{supervisord_conf_file}}"
     dest: "{{supervisord_conf_file_link}}"
@@ -46,8 +46,20 @@
     - supervisor
     - supervisord
 
+- name: Configure supervisord tasks in conf.d
+  action:
+    module: template
+    src: "task.conf.j2"
+    dest: "{{ supervisord_additional_conf_dir }}/{{ item.name }}.conf"
+  with_items: "{{ supervisord_tasks }}"
+  notify: update supervisord
+  tags:
+    - tasks
+    - supervisor
+    - supervisord
+
 - name: Create supervisord init script
-  sudo: yes
+  become: yes
   template:
     src: "{{item}}"
     dest: "{{supervisord_init_script}}"
@@ -67,7 +79,7 @@
     - supervisord
 
 - name: Add supervisord to init
-  sudo: yes
+  become: yes
   service:
     name: "{{supervisord_service_name}}"
     enabled: yes
