@@ -10,6 +10,9 @@ A role for deploying and configuring [Supervisor](http://supervisord.org) and ex
 * Manage supervisor tasks, group, events
 * Provide handlers for reload and restart supervisor
 
+Dependencies
+------------
+* Ansible >= 2.4
 
 Supports
 --------
@@ -19,6 +22,7 @@ Supported Supervisor versions:
 
 Supported targets:
 
+* Ubuntu 16.04 LTS "Xenial Xerus"
 * Ubuntu 14.04 LTS "Trusty Tahr"
 * Ubuntu 12.04 LTS "Precise Pangolin"
 * Debian (untested)

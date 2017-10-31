@@ -3,8 +3,8 @@
 # Delegate further configuration to subtasks
 # placed in this same directory.
 
-- include: install.yml
-- include: configure.yml
+- import_tasks: install.yml
+- import_tasks: configure.yml
 
 - name: Ensure supervisord is running
   become: yes
