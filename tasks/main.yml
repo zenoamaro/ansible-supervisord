@@ -7,12 +7,22 @@
 - include: configure.yml
 
 - name: Ensure supervisord is running
-  sudo: yes
+  become: yes
   service:
     name: "{{supervisord_service_name}}"
-    state: running
+    state: started
     enabled: yes
   tags:
     - init
     - supervisor
     - supervisord
+
+- name: Force systemctl enable supervisor ( Bug in ubuntu 16.04 pkg )
+  become: yes
+  command: systemctl enable supervisor
+  when: ansible_os_family == 'Debian'
+  tags:
+    - init
+    - supervisor
+    - supervisord
+
